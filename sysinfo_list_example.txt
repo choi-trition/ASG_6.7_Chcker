@@ -1,0 +1,3 @@
+ASG_1 : sysinfo0.txt
+ASG_2 : sysinfo1.txt
+ASG_3 : sysinfo2.txt

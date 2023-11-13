@@ -1,0 +1,229 @@
+
+===================Start ASG_1 Checking...===================
+
+Reported Time: 2023.11.13 Mon 14:37 UTC+0900
+
+[Appliance Information]
+ Model: ASG-S200-30 
+ Version: ASG 6.7.3.2 
+ Serial number is 1217330385 
+
+[Uptime]
+ hardware rebooted 5 hours, 40 minutes, and 46 seconds ago. 
+ software rebooted 5 hours, 40 minutes, and 46 seconds ago. 
+
+[System Time]
+ Current ProxySG Time: Wed May 22, 2019 23:36:27 GMT (SystemTime 738113787)
+ System Time is diffrent from current time.
+ Please check System Time.
+
+[Resource Utilization]
+(Current)
+ CPU Utilization	----- 12
+ Interface 0:0 Utilization	----- 0
+ Interface 1:0 Utilization	----- 0
+ Interface 2:0 Utilization	----- 1
+ Interface 2:1 Utilization	----- 0
+ CPU temperature	----- 24
+ System center temperature	----- 26
+(Monthly Average)
+ CPU Growth	----- 36 [36, 36, 36, 36]
+ Memory Growth	----- 29 [29, 29, 29, 29]
+
+[Overall Health]
+ Checking List: CPU, Memory, Hardware Sensors, Health Check, License
+ ..... Every Component is OK
+
+[Disk R/W Error]
+ Storage1	----- OK
+ Storage2	----- OK
+
+[Users]
+ Current Users: 147
+ User Monthly: 146.5
+
+[TCP]
+ Current Queued TCP Connections: 2093
+ Current Established TCP Connections: 986
+
+[Traffic Overview]
+(Last 24 hours)
+ HTTP Client Traffic:	Peak 16.38 Mbps, Average 1.46 Mbps
+ HTTP Server Traffic:	Peak 13.12 Mbps, Average 1.37 Mbps
+ HTTPS Client Traffic:	Peak 21.48 Mbps, Average 3.16 Mbps
+ HTTPS Server Traffic:	Peak 20.05 Mbps, Average 2.92 Mbps
+ SSL Client Traffic:	Peak 12.41 Mbps, Average 0.53 Mbps
+ SSL Server Traffic:	Peak 12.41 Mbps, Average 0.53 Mbps
+(Last Month)
+ HTTP Client Traffic:	Peak 3.26 Mbps, Average 1.40 Mbps
+ HTTP Server Traffic:	Peak 2.83 Mbps, Average 1.23 Mbps
+ HTTPS Client Traffic:	Peak 8.92 Mbps, Average 5.01 Mbps
+ HTTPS Server Traffic:	Peak 8.49 Mbps, Average 4.65 Mbps
+ SSL Client Traffic:	Peak 2.33 Mbps, Average 0.46 Mbps
+ SSL Server Traffic:	Peak 2.33 Mbps, Average 0.46 Mbps
+
+[Saving]
+ Saving: 8.04 %
+
+[Interface CRC]
+ CRC Error had occurred. Please check it.
+
+[HTTP Worker]
+ Worker Limit: 5000
+ Highwater: 318
+
+============================Checking Done!!===========================
+
+
+===================Start ASG_2 Checking...===================
+
+Reported Time: 2023.11.13 Mon 14:37 UTC+0900
+
+[Appliance Information]
+ Model: ASG-S200-30 
+ Version: ASG 6.7.5.10 
+ Serial number is 3018330239 
+
+[Uptime]
+ hardware rebooted 752 days, 14 hours, 35 minutes, and 43 seconds ago. 
+ software rebooted 752 days, 14 hours, 35 minutes, and 43 seconds ago. 
+
+[System Time]
+ Current ProxySG Time: Mon Sep 18, 2023 03:30:44 GMT (SystemTime 874553444)
+ System Time is diffrent from current time.
+ Please check System Time.
+
+[Resource Utilization]
+(Current)
+ CPU Utilization	----- 8
+ Interface 0:0 Utilization	----- 0
+ Interface 1:0 Utilization	----- 0
+ Interface 2:0 Utilization	----- 0
+ Interface 2:1 Utilization	----- 0
+ CPU temperature	----- 32
+ System center temperature	----- 31
+(Monthly Average)
+ CPU Growth	----- 10 [10, 10, 10, 10]
+ Memory Growth	----- 22 [22, 22, 22, 22]
+
+[Overall Health]
+ Checking List: CPU, Memory, Hardware Sensors, Health Check, License
+ ..... Every Component is OK
+
+[Disk R/W Error]
+ Storage1	----- OK
+ Storage2	----- OK
+
+[Users]
+ Current Users: 52
+ User Monthly: 52.75
+
+[TCP]
+ Current Queued TCP Connections: 594
+ Current Established TCP Connections: 435
+
+[Traffic Overview]
+(Last 24 hours)
+ HTTP Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ HTTP Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ HTTPS Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ HTTPS Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ SSL Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ SSL Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+(Last Month)
+ HTTP Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ HTTP Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ HTTPS Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ HTTPS Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ SSL Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ SSL Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+
+[Saving]
+ Saving: 100.00 %
+
+[Interface CRC]
+ CRC is OK
+
+[HTTP Worker]
+ Worker Limit: 2500
+ Highwater: 2500
+
+============================Checking Done!!===========================
+
+
+===================Start ASG_3 Checking...===================
+
+Reported Time: 2023.11.13 Mon 14:37 UTC+0900
+
+[Appliance Information]
+ Model: ASG-S400-20 
+ Version: ASG 6.7.5.10 
+ Serial number is 1218320226 
+
+[Uptime]
+ hardware rebooted 752 days, 12 hours, 33 minutes, and 35 seconds ago. 
+ software rebooted 752 days, 12 hours, 33 minutes, and 35 seconds ago. 
+
+[System Time]
+ Current ProxySG Time: Mon Sep 18, 2023 02:19:07 GMT (SystemTime 874549147)
+ System Time is diffrent from current time.
+ Please check System Time.
+
+[Resource Utilization]
+(Current)
+ CPU Utilization	----- 2
+ Interface 0:0 Utilization	----- 0
+ Interface 1:0 Utilization	----- 0
+ Interface 2:0 Utilization	----- 2
+ Interface 2:1 Utilization	----- 0
+ CPU temperature	----- 24
+ System center temperature	----- 32
+(Monthly Average)
+ CPU Growth	----- 3 [3, 3, 3, 3]
+ Memory Growth	----- 15 [15, 15, 15, 15]
+
+[Overall Health]
+ Checking List: CPU, Memory, Hardware Sensors, Health Check, License
+ ..... Every Component is OK
+
+[Disk R/W Error]
+ Storage1	----- OK
+ Storage2	----- OK
+ Storage3	----- OK
+
+[Users]
+ Current Users: 154
+ User Monthly: 156.5
+
+[TCP]
+ Current Queued TCP Connections: 3812
+ Current Established TCP Connections: 3700
+
+[Traffic Overview]
+(Last 24 hours)
+ HTTP Client Traffic:	Peak 15.89 Mbps, Average 2.80 Mbps
+ HTTP Server Traffic:	Peak 15.88 Mbps, Average 2.79 Mbps
+ HTTPS Client Traffic:	Peak 0.06 Mbps, Average 0.00 Mbps
+ HTTPS Server Traffic:	Peak 0.06 Mbps, Average 0.00 Mbps
+ SSL Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ SSL Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+(Last Month)
+ HTTP Client Traffic:	Peak 5.80 Mbps, Average 3.87 Mbps
+ HTTP Server Traffic:	Peak 5.79 Mbps, Average 3.86 Mbps
+ HTTPS Client Traffic:	Peak 0.01 Mbps, Average 0.00 Mbps
+ HTTPS Server Traffic:	Peak 0.01 Mbps, Average 0.00 Mbps
+ SSL Client Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+ SSL Server Traffic:	Peak 0.00 Mbps, Average 0.00 Mbps
+
+[Saving]
+ Saving: 4.30 %
+
+[Interface CRC]
+ CRC is OK
+
+[HTTP Worker]
+ Worker Limit: 5000
+ Highwater: 2757
+
+============================Checking Done!!===========================
+
