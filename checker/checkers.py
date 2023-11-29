@@ -68,15 +68,39 @@ def make_txt(hostname, section_list):
         file.write('\n==============================================================================\n\n')
         file.close()
 
+def backup(hostname, proxy_ip, auth):
+    sysinfo_name = f'{hostname}_sysinfo.txt'
+    sysinfo_url = 'https://'+proxy_ip+':8082/sysinfo'
+    config_name = f'{hostname}_archconf.txt'
+    config_url = 'https://'+proxy_ip+':8082/archconf_expanded.txt'
+    eventlog_name = f'{hostname}_eventlog.txt'
+    eventlog_url = 'https://'+proxy_ip+':8082/eventlog/fetch=0xffffffff'
+
+    try:
+        sysinfo_get = rq.get(sysinfo_url, verify = False, auth = auth)
+        config_get = rq.get(config_url, verify = False, auth = auth)
+        eventlog_get = rq.get(eventlog_url, verify = False, auth = auth)
+    except:
+        print('\n Can not connect to the '+hostname+'. Please check the Proxy IP or your network.\n', flush=True)
+        time.sleep(1)
+    else:
+        with open(sysinfo_name, 'w', encoding='utf-8') as file:
+            print(file.write(sysinfo_get.content))
+        with open(config_name, 'w', encoding='utf-8') as file:
+            print(file.write(config_get.content))
+        with open(eventlog_name, 'w', encoding='utf-8') as file:
+            print(file.write(eventlog_get.content))
+        print(' Backup Done.\n')
+
 def system_check(hostname, device, ver_info, health, hardware, disk, statistics, tcp, http):
     print('\n===================Start '+hostname+' Checking...===================\n')
     print('Reported Time: '+ct+'\n')
     print('[Appliance Information]\n',device[4], '\n', ver_info[3], '\n', ver_info[-3],'\n')
-    print('[Uptime]\n', ver_info[8].replace('The ProxySG Appliance was last ', ''), '\n', ver_info[9].replace('The ProxySG Appliance was last ', ''),'\n')
+    print('[Uptime]\n', ver_info[8].replace('The ASG Appliance was last ', ''), '\n', ver_info[9].replace('The ASG Appliance was last ', ''),'\n')
     
     syst = ver_info[7][20:39]
     print('[System Time]')
-    print(' Current ProxySG Time:',ver_info[7][20:])
+    print(' Current ASG Time:',ver_info[7][20:])
     if syst == gmt:
         print(' System Time is OK\n')
     else:
@@ -301,8 +325,7 @@ def integration_health(hostname, proxy_ip, auth):
         healthcheck = rq.get('https://'+proxy_ip+':8082/health_check/statistics', verify = False, auth = auth)
     except:
         print(' Can not connect to the '+hostname+'. Please check the IP or your network.\n', flush=True)
-        time.sleep(1.5)
-        exit()
+        time.sleep(1)
     else:
         health_status = healthcheck.text
         health = health_status.splitlines()
@@ -313,6 +336,7 @@ def integration_health(hostname, proxy_ip, auth):
         unup = re.compile('Enabled  	Unknown  	UP')
         drtr = re.compile('drtr.rating_service')
 
+        print('\n===============Get '+hostname+' Current Integration Health...================\n')
         print('[Health Check]')
 
         for data in keyword.keys():
@@ -344,39 +368,39 @@ def integration_health(hostname, proxy_ip, auth):
                         print(' '+health[idx+2].strip()+' \t\t[OK]')
                     else: print(' '+health[idx+2].strip()+' \t\t[NG] Please check this component!')
                 else: continue
-        print()
+        print('\n====================================Done!!===================================\n')
 
 def get_test(hostname, proxy_ip):
     # Proxy - internet 접속 테스트
     get_url = str(input('\nPlease type the test URL.\n example) http://www.example.com\n : '))
-    print('\n================Start '+hostname+' Internet Connection Test...================\n')
-    proxyDict = {'http':'http://'+proxy_ip+':8080', 'https':'https://'+proxy_ip+':8080'}
-    print('[Proxy Internet Connection Test]\n Test URL:\t'+get_url+'\n')
-    print(' NOTE: This function does NOT offer authentication method.\n If your ProxySG need authentication, please find another way to check for test.\n')
     try:
+        proxyDict = {'http':'http://'+proxy_ip+':8080', 'https':'https://'+proxy_ip+':8080'}
         get_result = rq.get(get_url, verify = False, proxies=proxyDict)
     except rq.exceptions.MissingSchema:
-        print(' Please input the URL correctly.\n example) http://www.example.com\n')
+        print('\n Please input the URL correctly.\n example) http://www.example.com\n')
     except:
-        print(" Can't connect to the '"+get_url+"'.\n Please test with web browser for details.\n")
+        print("\n Can't connect to the '"+get_url+"'.\n For details, please test it in a web browser.\n")
     else:
-        if get_result.ok: print(" Connected to the '"+get_url+"'via Proxy successfully.\n")
-        else: print(" Unable to connect to the '"+get_url+"'.\n Please test with web browser for details.\n")
-    print('\n====================================Done!!===================================\n')
+        print('\n================Start '+hostname+' Internet Connection Test...================\n')
+        print('[Proxy Internet Connection Test]\n Test URL:\t'+get_url+'\n')
+        print(' NOTE: This function does NOT offer authentication method.\n If your ASG requires client authentication, please test in a diffrent way.\n')
+        if get_result.status_code >= 400: print(" Unable to connect to the '"+get_url+f"'.\n Please test it in a web browser for details.\n HTTP Response: {get_result.status_code} {get_result.reason}")
+        else: print(" Connected to the '"+get_url+f"'via Proxy successfully.\n HTTP Response: {get_result.status_code} {get_result.reason}")
+        print('\n====================================Done!!===================================\n')
 
 def category_test(hostname, proxy_ip, auth):
     # # Proxy - categorization 테스트
     category_url = str(input('\nPlease type the test URL.\n example) http://www.example.com\n : '))    
-    print('\n===================Start '+hostname+' Categorization Test...==================\n')
-    print('[Category Check]')
-    print(' Test URL: '+category_url+'\n')
     try:
         category = rq.get('https://'+proxy_ip+':8082/ContentFilter/TestUrl/'+category_url, verify = False, auth = auth)
     except:
-        print(' Can not connect to the '+hostname+'. Please check the IP or your network.\n', flush=True)
-        time.sleep(1.5)
+        print('\n Can not connect to the '+hostname+'. Please check the IP or your network.\n', flush=True)
+        time.sleep(1)
     else:
+        print('\n===================Start '+hostname+' Categorization Test...==================\n')
+        print('[Category Check]')
+        print(' Test URL: '+category_url+'\n')
         category_list = category.text.splitlines()
         for data in category_list:
             print(f' {data.strip()}')
-    print('\n====================================Done!!===================================\n')
+        print('\n====================================Done!!===================================\n')

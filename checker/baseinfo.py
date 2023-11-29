@@ -4,7 +4,6 @@ import requests as rq
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
 class Input:
 
     def __init__(self):
@@ -13,14 +12,14 @@ class Input:
         self.hostname = ''
         self.proxy_ip = ''
         self.sysinfo_file = ''
-        self.auth = (self.username, self.password)
+        self.auth = ()
         self.hostname_list = []
         self.proxy_ip_list = []
         self.sysinfo_list = []
         self.appliance = 0
 
     def input_appliance_info(self):
-        print('\nPlease input the ProxySG information.\n')
+        print('\nPlease input the ASG information.\n')
         try:
             self.username = str(input('Console account username\texample) administrator\n : '))
             self.password = str(pw.getpass('Console account password\texample) mypassword\n : '))
@@ -28,22 +27,27 @@ class Input:
         except ValueError:
             print('\nPlease input correct value.\n', flush=True)
             time.sleep(1)
-            exit()
         else:
+            self.auth = (self.username, self.password)
             if self.appliance == 1:
                 self.hostname = str(input('Hostname\texample) Proxy_1\n : '))
                 self.proxy_ip = str(input('Proxy IP\texample) 192.168.1.100\n : '))
             elif self.appliance > 1:
                 print('\nPlease make sure the data had written in correct format.\nFormat >> Hostname : ProxyIP\n\nexample)\nProxy_1 : 192.168.1.100\nProxy_2 : 192.168.1.200\nProxy_3 : 192.168.1.300\n...\n''')
-                list_file = str(input('What is the ProxySG-List file name ?\texample) myProxyList.txt\n : '))
-                file = open(list_file, 'r')
-                while True:
-                    line = file.readline()
-                    if not line: break
-                    data = line.strip().split(' : ')
-                    self.hostname_list.append(data[0])
-                    self.proxy_ip_list.append(data[1])
-                file.close()
+                list_file = str(input('What is the ASG-List file name ?\texample) myProxyList.txt\n : '))
+                try:
+                    file = open(list_file, 'r')
+                except:
+                    print('\nCan not open the ASG list file.\n', flush=True)
+                    time.sleep(1)
+                else:
+                    while True:
+                        line = file.readline()
+                        if not line: break
+                        data = line.strip().split(' : ')
+                        self.hostname_list.append(data[0])
+                        self.proxy_ip_list.append(data[1])
+                    file.close()
 
     def input_sysinfo_file(self):
         print('\nPlease input the Sysinfo File information.\n NOTE: Make sure your sysinfo files are in the same directory/folder with this tool.\n')
@@ -51,8 +55,7 @@ class Input:
             self.appliance = int(input('How many sysinfo files do you want to check ?\texample) 3\n : '))
         except ValueError:
             print('\nPlease input correct value.\n', flush=True)
-            time.sleep(1)
-            exit()
+            time.sleep(1.5)
         else:
             if self.appliance == 1:
                 self.hostname = str(input('Hostname\texample) Proxy_1\n : '))
@@ -60,14 +63,19 @@ class Input:
             elif self.appliance > 1:
                 print('\nPlease make sure the data had written in correct format.\nFormat >> Hostname : Sysinfo File Name\n\nexample)\nProxy_1 : Proxy1_sysinfo.txt\nProxy_2 : Proxy2_sysinfo.txt\nProxy_3 : Proxy3_sysinfo.txt\n...\n''')
                 sysinfo_list_file = str(input('What is the Sysinfo-List file name ?\texample) mySysinfoList.txt\n : '))
-                file = open(sysinfo_list_file, 'r')
-                while True:
-                    line = file.readline()
-                    if not line: break
-                    data = line.strip().split(' : ')
-                    self.hostname_list.append(data[0])
-                    self.sysinfo_list.append(data[1])
-                file.close()
+                try:
+                    file = open(sysinfo_list_file, 'r')
+                except:
+                    print('\nCan not open the sysinfo list file.\n', flush=True)
+                    time.sleep(1)
+                else:
+                    while True:
+                        line = file.readline()
+                        if not line: break
+                        data = line.strip().split(' : ')
+                        self.hostname_list.append(data[0])
+                        self.sysinfo_list.append(data[1])
+                    file.close()
 
 
 class Get_data:
@@ -88,11 +96,10 @@ class Get_data:
         sysinfoUrl = 'https://'+proxy_ip+':8082/sysinfo'
 
         try:
-            sysinfo_get = rq.get(sysinfoUrl, verify = False, auth = auth)
+            sysinfo_get = rq.get(sysinfoUrl, verify = False, auth = auth, timeout=3)
         except:
-            print(' Can not connect to the '+hostname+'. Please check the IP or your network.\n', flush=True)
-            time.sleep(1.5)
-            exit()
+            print('\n Can not connect to the '+hostname+'. Please check the IP or your network.\n', flush=True)
+            time.sleep(1)
         else:
             lines = sysinfo_get.iter_lines(decode_unicode=True)
             section = self.exporter(lines)
@@ -112,8 +119,7 @@ class Get_data:
             file = open(sysinfo_file, 'r', encoding='utf-8')
         except:
             print(' Can not open the '+sysinfo_file+'. Please check the File location.\n', flush=True)
-            time.sleep(1.5)
-            exit()
+            time.sleep(1)
         else:
             list_lines = file.readlines()
             file.close()
