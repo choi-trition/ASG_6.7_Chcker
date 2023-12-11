@@ -106,7 +106,7 @@ if __name__ == "__main__":
                 if number == 1:
                     if prx_info.appliance == 1:
                         prx_data = bi.Get_data()
-                        prx_data.make_section(prx_info.auth, prx_info.proxy_ip, prx_info.hostname)
+                        prx_data.make_section(prx_info.auth, prx_info.hostname, prx_info.proxy_ip)
                         if not prx_data.device:
                             continue
                         stdout = sys.stdout

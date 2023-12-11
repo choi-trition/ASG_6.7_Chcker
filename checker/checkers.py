@@ -86,10 +86,13 @@ def backup(hostname, proxy_ip, auth):
     else:
         with open(sysinfo_name, 'w', encoding='utf-8') as file:
             print(file.write(sysinfo_get.content))
+            # print(file.write(sysinfo_get.content.decode(encoding='utf-8')))
         with open(config_name, 'w', encoding='utf-8') as file:
             print(file.write(config_get.content))
+            # print(file.write(config_get.content.decode(encoding='utf-8')))
         with open(eventlog_name, 'w', encoding='utf-8') as file:
             print(file.write(eventlog_get.content))
+            # print(file.write(eventlog_get.content.decode(encoding='utf-8')))
         print(' Backup Done.\n')
 
 def system_check(hostname, device, ver_info, health, hardware, disk, statistics, tcp, http):
@@ -185,16 +188,37 @@ def system_check(hostname, device, ver_info, health, hardware, disk, statistics,
 
     print('[TCP]')
     est_conn = re.compile('TCP1.201')
-    que_conn = re.compile('TCP1.203')
+    syn_err = re.compile('TCP1.355')
+    cpu_err = re.compile('TCP1.356')
+    many_err = re.compile('TCP1.339')
+    tw_err = re.compile('TCP1.185')
+    full_err = re.compile('TCP1.186')
+    # que_conn = re.compile('TCP1.203')
+
 
     for data in tcp:
         if est_conn.search(data):
             est_conn_list = data.split()
             print(' Current Established TCP Connections:',est_conn_list[1])
-            break
-        if que_conn.search(data):
-            que_conn_list = data.split()
-            print(' Current Queued TCP Connections:',que_conn_list[1])
+        if syn_err.search(data):
+            syn_err_list = data.split()
+            print(' Syn ignored due to acceptance regulation:',syn_err_list[1])
+        if cpu_err.search(data):
+            cpu_err_list = data.split()
+            print(' Accept regulation due to high CPU:',cpu_err_list[1])
+        if many_err.search(data):
+            many_err_list = data.split()
+            print(' Dropped because too many at once from client:',many_err_list[1])
+        if tw_err.search(data):
+            tw_err_list = data.split()
+            print(' Failed because too many time-wait state:',tw_err_list[1])
+        if full_err.search(data):
+            full_err_list = data.split()
+            print(' Not accepted because the queue was full:',full_err_list[1])
+        # if que_conn.search(data):
+        #     que_conn_list = data.split()
+        #     print(' Current Queued TCP Connections:',que_conn_list[1])
+
     print('')
 
     # -- daily traffic

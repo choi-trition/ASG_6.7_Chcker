@@ -92,11 +92,11 @@ class Get_data:
         self.statistics = []
 
 
-    def make_section(self, auth, proxy_ip, hostname):
+    def make_section(self, auth, hostname, proxy_ip):
         sysinfoUrl = 'https://'+proxy_ip+':8082/sysinfo'
 
         try:
-            sysinfo_get = rq.get(sysinfoUrl, verify = False, auth = auth, timeout=3)
+            sysinfo_get = rq.get(sysinfoUrl, verify = False, auth = auth)
         except:
             print('\n Can not connect to the '+hostname+'. Please check the IP or your network.\n', flush=True)
             time.sleep(1)
