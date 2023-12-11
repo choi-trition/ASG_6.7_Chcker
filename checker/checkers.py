@@ -84,15 +84,19 @@ def backup(hostname, proxy_ip, auth):
         print('\n Can not connect to the '+hostname+'. Please check the Proxy IP or your network.\n', flush=True)
         time.sleep(1)
     else:
+        print(f'\n Start Backup {hostname}...\n', flush=True)
         with open(sysinfo_name, 'w', encoding='utf-8') as file:
-            print(file.write(sysinfo_get.content))
-            # print(file.write(sysinfo_get.content.decode(encoding='utf-8')))
+            content = sysinfo_get.text.replace('\r\n','\n')
+            print(' ..Writing Sysinfo...', flush=True)
+            file.write(content)
         with open(config_name, 'w', encoding='utf-8') as file:
-            print(file.write(config_get.content))
-            # print(file.write(config_get.content.decode(encoding='utf-8')))
+            content = config_get.text.replace('\r\n','\n')
+            print(' ..Writing Config...', flush=True)
+            file.write(content)
         with open(eventlog_name, 'w', encoding='utf-8') as file:
-            print(file.write(eventlog_get.content))
-            # print(file.write(eventlog_get.content.decode(encoding='utf-8')))
+            content = eventlog_get.text.replace('\r\n','\n')
+            print(' ..Writing Eventlog...\n', flush=True)
+            file.write(content)
         print(' Backup Done.\n')
 
 def system_check(hostname, device, ver_info, health, hardware, disk, statistics, tcp, http):
