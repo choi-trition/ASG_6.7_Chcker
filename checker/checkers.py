@@ -86,16 +86,16 @@ def backup(hostname, proxy_ip, auth):
     else:
         print(f'\n Start Backup {hostname}...\n', flush=True)
         with open(sysinfo_name, 'w', encoding='utf-8') as file:
-            content = sysinfo_get.text.replace('\r\n','\n')
             print(' ..Writing Sysinfo...', flush=True)
+            content = sysinfo_get.text.replace('\r\n','\n')
             file.write(content)
         with open(config_name, 'w', encoding='utf-8') as file:
-            content = config_get.text.replace('\r\n','\n')
             print(' ..Writing Config...', flush=True)
+            content = config_get.text.replace('\r\n','\n')
             file.write(content)
         with open(eventlog_name, 'w', encoding='utf-8') as file:
-            content = eventlog_get.text.replace('\r\n','\n')
             print(' ..Writing Eventlog...\n', flush=True)
+            content = eventlog_get.text.replace('\r\n','\n')
             file.write(content)
         print(' Backup Done.\n')
 
@@ -199,30 +199,28 @@ def system_check(hostname, device, ver_info, health, hardware, disk, statistics,
     full_err = re.compile('TCP1.186')
     # que_conn = re.compile('TCP1.203')
 
-
     for data in tcp:
         if est_conn.search(data):
             est_conn_list = data.split()
-            print(' Current Established TCP Connections:',est_conn_list[1])
-        if syn_err.search(data):
+        elif syn_err.search(data):
             syn_err_list = data.split()
-            print(' Syn ignored due to acceptance regulation:',syn_err_list[1])
-        if cpu_err.search(data):
+        elif cpu_err.search(data):
             cpu_err_list = data.split()
-            print(' Accept regulation due to high CPU:',cpu_err_list[1])
-        if many_err.search(data):
+        elif many_err.search(data):
             many_err_list = data.split()
-            print(' Dropped because too many at once from client:',many_err_list[1])
-        if tw_err.search(data):
+        elif tw_err.search(data):
             tw_err_list = data.split()
-            print(' Failed because too many time-wait state:',tw_err_list[1])
-        if full_err.search(data):
+        elif full_err.search(data):
             full_err_list = data.split()
-            print(' Not accepted because the queue was full:',full_err_list[1])
-        # if que_conn.search(data):
+        # elif que_conn.search(data):
         #     que_conn_list = data.split()
-        #     print(' Current Queued TCP Connections:',que_conn_list[1])
-
+    print(' Current Established TCP Connections:',est_conn_list[1])
+    print(' Syn ignored due to acceptance regulation:',syn_err_list[1])
+    print(' Accept regulation due to high CPU:',cpu_err_list[1])
+    print(' Dropped because too many at once from client:',many_err_list[1])
+    print(' Failed because too many time-wait state:',tw_err_list[1])
+    print(' Not accepted because the queue was full:',full_err_list[1])
+    # print(' Current Queued TCP Connections:',que_conn_list[1])
     print('')
 
     # -- daily traffic
