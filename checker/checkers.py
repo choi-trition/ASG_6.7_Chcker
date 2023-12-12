@@ -103,7 +103,7 @@ def system_check(hostname, device, ver_info, health, hardware, disk, statistics,
     print('\n===================Start '+hostname+' Checking...===================\n')
     print('Reported Time: '+ct+'\n')
     print('[Appliance Information]\n',device[4], '\n', ver_info[3], '\n', ver_info[-3],'\n')
-    print('[Uptime]\n', ver_info[8].replace('The ASG Appliance was last ', ''), '\n', ver_info[9].replace('The ASG Appliance was last ', ''),'\n')
+    print('[Uptime]\n', ver_info[8].replace('The ProxySG Appliance was last ', ''), '\n', ver_info[9].replace('The ProxySG Appliance was last ', ''),'\n')
     
     syst = ver_info[7][20:39]
     print('[System Time]')
