@@ -94,7 +94,7 @@ if __name__ == "__main__":
                     print('\n Have a good day!\n', flush=True)
                     time.sleep(1)
                     exit()
-                elif number > 3 or number < 1: print('\nPlease type the correct number.\n')
+                else: print('\nPlease type the correct number.\n')
 
         elif prx_is_set == True and prx_is_sysinfo == False:
             print(prompt2, end='')
@@ -187,7 +187,7 @@ if __name__ == "__main__":
                     print('\n Have a good day!\n', flush=True)
                     time.sleep(1)
                     exit()
-                elif number > 5 or number < 1: print('\nPlease type the correct number.\n')
+                else: print('\nPlease type the correct number.\n')
 
         elif prx_is_set == True and prx_is_sysinfo == True:
             print(prompt3, end='')
@@ -248,4 +248,4 @@ if __name__ == "__main__":
                     print('\n Have a good day!\n', flush=True)
                     time.sleep(1)
                     exit()
-                elif number > 3 or number < 1: print('\nPlease type the correct number.\n')
+                else: print('\nPlease type the correct number.\n')
