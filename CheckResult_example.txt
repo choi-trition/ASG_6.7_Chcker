@@ -1,19 +1,19 @@
 
 ===================Start ASG_1 Checking...===================
 
-Reported Time: 2023.11.13 Mon 14:37 UTC+0900
+Reported Time: 2023.12.13 Wed 13:37 UTC+0900
 
 [Appliance Information]
  Model: ASG-S200-30 
  Version: ASG 6.7.3.2 
- Serial number is xxxxxxxxxx 
+ Serial number is XXXXXXXXXX 
 
 [Uptime]
  hardware rebooted 5 hours, 40 minutes, and 46 seconds ago. 
  software rebooted 5 hours, 40 minutes, and 46 seconds ago. 
 
 [System Time]
- Current ProxySG Time: Wed May 22, 2019 23:36:27 GMT (SystemTime 738113787)
+ Current ASG Time: Wed May 22, 2019 23:36:27 GMT (SystemTime 738113787)
  System Time is diffrent from current time.
  Please check System Time.
 
@@ -43,8 +43,12 @@ Reported Time: 2023.11.13 Mon 14:37 UTC+0900
  User Monthly: 146.5
 
 [TCP]
- Current Queued TCP Connections: 2093
  Current Established TCP Connections: 986
+ Syn ignored due to acceptance regulation: 1000
+ Accept regulation due to high CPU: 22769
+ Dropped because too many at once from client: 0
+ Failed because too many time-wait state: 0
+ Not accepted because the queue was full: 0
 
 [Traffic Overview]
 (Last 24 hours)
@@ -77,19 +81,19 @@ Reported Time: 2023.11.13 Mon 14:37 UTC+0900
 
 ===================Start ASG_2 Checking...===================
 
-Reported Time: 2023.11.13 Mon 14:37 UTC+0900
+Reported Time: 2023.12.13 Wed 13:37 UTC+0900
 
 [Appliance Information]
  Model: ASG-S200-30 
  Version: ASG 6.7.5.10 
- Serial number is xxxxxxxxxx 
+ Serial number is XXXXXXXXXX 
 
 [Uptime]
  hardware rebooted 752 days, 14 hours, 35 minutes, and 43 seconds ago. 
  software rebooted 752 days, 14 hours, 35 minutes, and 43 seconds ago. 
 
 [System Time]
- Current ProxySG Time: Mon Sep 18, 2023 03:30:44 GMT (SystemTime 874553444)
+ Current ASG Time: Mon Sep 18, 2023 03:30:44 GMT (SystemTime 874553444)
  System Time is diffrent from current time.
  Please check System Time.
 
@@ -119,8 +123,12 @@ Reported Time: 2023.11.13 Mon 14:37 UTC+0900
  User Monthly: 52.75
 
 [TCP]
- Current Queued TCP Connections: 594
  Current Established TCP Connections: 435
+ Syn ignored due to acceptance regulation: 33
+ Accept regulation due to high CPU: 85
+ Dropped because too many at once from client: 0
+ Failed because too many time-wait state: 0
+ Not accepted because the queue was full: 2069
 
 [Traffic Overview]
 (Last 24 hours)
@@ -153,19 +161,19 @@ Reported Time: 2023.11.13 Mon 14:37 UTC+0900
 
 ===================Start ASG_3 Checking...===================
 
-Reported Time: 2023.11.13 Mon 14:37 UTC+0900
+Reported Time: 2023.12.13 Wed 13:37 UTC+0900
 
 [Appliance Information]
  Model: ASG-S400-20 
  Version: ASG 6.7.5.10 
- Serial number is xxxxxxxxxx 
+ Serial number is XXXXXXXXXX 
 
 [Uptime]
  hardware rebooted 752 days, 12 hours, 33 minutes, and 35 seconds ago. 
  software rebooted 752 days, 12 hours, 33 minutes, and 35 seconds ago. 
 
 [System Time]
- Current ProxySG Time: Mon Sep 18, 2023 02:19:07 GMT (SystemTime 874549147)
+ Current ASG Time: Mon Sep 18, 2023 02:19:07 GMT (SystemTime 874549147)
  System Time is diffrent from current time.
  Please check System Time.
 
@@ -196,8 +204,12 @@ Reported Time: 2023.11.13 Mon 14:37 UTC+0900
  User Monthly: 156.5
 
 [TCP]
- Current Queued TCP Connections: 3812
  Current Established TCP Connections: 3700
+ Syn ignored due to acceptance regulation: 0
+ Accept regulation due to high CPU: 0
+ Dropped because too many at once from client: 0
+ Failed because too many time-wait state: 0
+ Not accepted because the queue was full: 0
 
 [Traffic Overview]
 (Last 24 hours)
@@ -226,4 +238,3 @@ Reported Time: 2023.11.13 Mon 14:37 UTC+0900
  Highwater: 2757
 
 ============================Checking Done!!===========================
-
